@@ -1,0 +1,859 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>R Studio | Websites • Posters • Digital Design</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #080808;
+      color: #ffffff;
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    /* NAVIGATION */
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(8, 8, 8, 0.9);
+      backdrop-filter: blur(15px);
+      border-bottom: 1px solid #222;
+    }
+
+    .nav-inner {
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: 900;
+      letter-spacing: -1px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 25px;
+      font-size: 14px;
+      color: #aaa;
+    }
+
+    .nav-links a:hover {
+      color: white;
+    }
+
+    /* HERO */
+
+    .hero {
+      min-height: 90vh;
+      display: flex;
+      align-items: center;
+      padding: 80px 0;
+    }
+
+    .hero-content {
+      max-width: 800px;
+    }
+
+    .tag {
+      display: inline-block;
+      border: 1px solid #333;
+      border-radius: 50px;
+      padding: 7px 13px;
+      font-size: 12px;
+      color: #aaa;
+      margin-bottom: 25px;
+    }
+
+    .hero h1 {
+      font-size: clamp(50px, 9vw, 95px);
+      line-height: 0.95;
+      letter-spacing: -5px;
+      margin-bottom: 30px;
+    }
+
+    .hero h1 span {
+      color: #777;
+    }
+
+    .hero p {
+      max-width: 600px;
+      color: #aaa;
+      font-size: 18px;
+      margin-bottom: 30px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 13px 20px;
+      border-radius: 10px;
+      border: 1px solid #333;
+      font-weight: bold;
+      font-size: 14px;
+      transition: 0.2s;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      border-color: #666;
+    }
+
+    .btn-primary {
+      background: white;
+      color: black;
+      border-color: white;
+    }
+
+    /* SECTIONS */
+
+    section {
+      padding: 100px 0;
+      border-top: 1px solid #1d1d1d;
+    }
+
+    .section-title {
+      font-size: 45px;
+      letter-spacing: -2px;
+      margin-bottom: 10px;
+    }
+
+    .section-description {
+      color: #888;
+      max-width: 550px;
+      margin-bottom: 40px;
+    }
+
+    /* SERVICES */
+
+    .services {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      background: #111;
+      border: 1px solid #222;
+      border-radius: 20px;
+      padding: 30px;
+    }
+
+    .card-icon {
+      font-size: 30px;
+      margin-bottom: 20px;
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+      font-size: 21px;
+    }
+
+    .card p {
+      color: #888;
+      font-size: 14px;
+    }
+
+    /* WORK */
+
+    .work-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .work {
+      background: #111;
+      border: 1px solid #222;
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .work-preview {
+      height: 230px;
+      padding: 25px;
+      display: flex;
+      align-items: end;
+      background: linear-gradient(145deg, #292929, #0e0e0e);
+    }
+
+    .website-preview {
+      width: 100%;
+      background: #090909;
+      border: 1px solid #444;
+      border-radius: 12px;
+      padding: 20px;
+    }
+
+    .website-preview small {
+      color: #777;
+    }
+
+    .website-preview h3 {
+      font-size: 28px;
+      line-height: 1;
+      margin-top: 10px;
+    }
+
+    .poster-preview {
+      width: 100%;
+      height: 100%;
+      padding: 20px;
+      background: #eee;
+      color: #111;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .poster-preview h3 {
+      font-size: 32px;
+      line-height: 0.95;
+    }
+
+    .work-info {
+      padding: 20px;
+    }
+
+    .work-info h3 {
+      margin-bottom: 5px;
+    }
+
+    .work-info p {
+      color: #888;
+      font-size: 14px;
+    }
+
+    .demo-label {
+      display: inline-block;
+      margin-top: 10px;
+      font-size: 11px;
+      color: #777;
+      border: 1px solid #333;
+      padding: 4px 8px;
+      border-radius: 20px;
+    }
+
+    /* PRICING */
+
+    .pricing {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .price-card {
+      background: #111;
+      border: 1px solid #222;
+      border-radius: 20px;
+      padding: 30px;
+    }
+
+    .price-card.featured {
+      border-color: #777;
+    }
+
+    .price-card h3 {
+      font-size: 20px;
+    }
+
+    .price {
+      font-size: 40px;
+      font-weight: bold;
+      margin: 10px 0 20px;
+      letter-spacing: -2px;
+    }
+
+    .price-card ul {
+      list-style: none;
+      color: #999;
+      font-size: 14px;
+      margin-bottom: 25px;
+    }
+
+    .price-card li {
+      margin: 9px 0;
+    }
+
+    .price-card li::before {
+      content: "✓ ";
+      color: white;
+    }
+
+    .price-card .btn {
+      display: block;
+      text-align: center;
+    }
+
+    /* CONTACT */
+
+    .contact-box {
+      background: linear-gradient(145deg, #171717, #0d0d0d);
+      border: 1px solid #292929;
+      border-radius: 25px;
+      padding: 55px;
+      text-align: center;
+    }
+
+    .contact-box h2 {
+      font-size: clamp(40px, 7vw, 70px);
+      line-height: 1;
+      letter-spacing: -3px;
+      margin-bottom: 20px;
+    }
+
+    .contact-box p {
+      color: #999;
+      margin-bottom: 30px;
+    }
+
+    .phone {
+      margin-top: 20px;
+      color: #777;
+      font-size: 14px;
+    }
+
+    /* FOOTER */
+
+    footer {
+      padding: 35px 0;
+      border-top: 1px solid #222;
+      color: #666;
+      font-size: 13px;
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 800px) {
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
+        min-height: 80vh;
+      }
+
+      .hero h1 {
+        letter-spacing: -3px;
+      }
+
+      .services,
+      .work-grid,
+      .pricing {
+        grid-template-columns: 1fr;
+      }
+
+      section {
+        padding: 70px 0;
+      }
+
+      .contact-box {
+        padding: 35px 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- NAVIGATION -->
+
+<nav>
+  <div class="container nav-inner">
+
+    <a href="#" class="logo">
+      R STUDIO
+    </a>
+
+    <div class="nav-links">
+      <a href="#services">Services</a>
+      <a href="#work">Work</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#contact">Contact</a>
+    </div>
+
+  </div>
+</nav>
+
+
+<!-- HERO -->
+
+<header class="hero">
+  <div class="container hero-content">
+
+    <span class="tag">
+      WEBSITES • POSTERS • DIGITAL DESIGN
+    </span>
+
+    <h1>
+      Make your business
+      <span>look better online.</span>
+    </h1>
+
+    <p>
+      R Studio creates clean, modern and affordable websites
+      and promotional designs for small businesses.
+    </p>
+
+    <div class="buttons">
+
+      <a href="#contact" class="btn btn-primary">
+        Start a project
+      </a>
+
+      <a href="#work" class="btn">
+        View my work
+      </a>
+
+    </div>
+
+  </div>
+</header>
+
+
+<!-- SERVICES -->
+
+<section id="services">
+
+  <div class="container">
+
+    <h2 class="section-title">
+      What I do.
+    </h2>
+
+    <p class="section-description">
+      Practical digital solutions for businesses that want
+      a professional online presence without a huge agency budget.
+    </p>
+
+    <div class="services">
+
+      <div class="card">
+
+        <div class="card-icon">🌐</div>
+
+        <h3>
+          Business Websites
+        </h3>
+
+        <p>
+          Clean one-page websites with your services,
+          pricing, gallery, location, social media and
+          WhatsApp contact.
+        </p>
+
+      </div>
+
+
+      <div class="card">
+
+        <div class="card-icon">🎨</div>
+
+        <h3>
+          Posters & Social Media
+        </h3>
+
+        <p>
+          Promotional designs for Instagram,
+          WhatsApp, events, products, menus and
+          special campaigns.
+        </p>
+
+      </div>
+
+
+      <div class="card">
+
+        <div class="card-icon">📱</div>
+
+        <h3>
+          Mobile-Friendly Design
+        </h3>
+
+        <p>
+          Websites designed to look clean and
+          professional on phones, tablets and computers.
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- WORK -->
+
+<section id="work">
+
+  <div class="container">
+
+    <h2 class="section-title">
+      Demo work.
+    </h2>
+
+    <p class="section-description">
+      Concept designs created to demonstrate what R Studio
+      can create for different types of businesses.
+    </p>
+
+
+    <div class="work-grid">
+
+
+      <!-- CAFE -->
+
+      <div class="work">
+
+        <div class="work-preview">
+
+          <div class="website-preview">
+
+            <small>
+              CAFÉ / WEBSITE
+            </small>
+
+            <h3>
+              MOON<br>
+              COFFEE
+            </h3>
+
+          </div>
+
+        </div>
+
+        <div class="work-info">
+
+          <h3>
+            Café Website
+          </h3>
+
+          <p>
+            Menu, promotions, location and WhatsApp ordering.
+          </p>
+
+          <span class="demo-label">
+            DEMO CONCEPT
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <!-- BARBER -->
+
+      <div class="work">
+
+        <div class="work-preview">
+
+          <div class="website-preview">
+
+            <small>
+              BARBER / WEBSITE
+            </small>
+
+            <h3>
+              THE<br>
+              GENTLEMEN
+            </h3>
+
+          </div>
+
+        </div>
+
+        <div class="work-info">
+
+          <h3>
+            Barber Website
+          </h3>
+
+          <p>
+            Services, prices, gallery, opening hours and booking.
+          </p>
+
+          <span class="demo-label">
+            DEMO CONCEPT
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <!-- POSTER -->
+
+      <div class="work">
+
+        <div class="work-preview">
+
+          <div class="poster-preview">
+
+            <small>
+              LIMITED OFFER
+            </small>
+
+            <h3>
+              20% OFF<br>
+              THIS WEEK
+            </h3>
+
+            <strong>
+              RM39
+            </strong>
+
+          </div>
+
+        </div>
+
+        <div class="work-info">
+
+          <h3>
+            Promotional Poster
+          </h3>
+
+          <p>
+            Social-media-ready promotional graphic.
+          </p>
+
+          <span class="demo-label">
+            DEMO CONCEPT
+          </span>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- PRICING -->
+
+<section id="pricing">
+
+  <div class="container">
+
+    <h2 class="section-title">
+      Simple pricing.
+    </h2>
+
+    <p class="section-description">
+      Starting prices. Final pricing depends on the
+      amount of content and customisation required.
+    </p>
+
+
+    <div class="pricing">
+
+
+      <!-- STARTER -->
+
+      <div class="price-card">
+
+        <h3>
+          Starter
+        </h3>
+
+        <div class="price">
+          RM50
+        </div>
+
+        <ul>
+
+          <li>
+            3 promotional posters
+          </li>
+
+          <li>
+            Social-media formats
+          </li>
+
+          <li>
+            Basic revisions
+          </li>
+
+        </ul>
+
+        <a href="#contact" class="btn">
+          Enquire
+        </a>
+
+      </div>
+
+
+      <!-- BUSINESS -->
+
+      <div class="price-card featured">
+
+        <h3>
+          Business
+        </h3>
+
+        <div class="price">
+          RM180
+        </div>
+
+        <ul>
+
+          <li>
+            One-page website
+          </li>
+
+          <li>
+            3 promotional posters
+          </li>
+
+          <li>
+            WhatsApp contact button
+          </li>
+
+          <li>
+            Mobile-friendly design
+          </li>
+
+        </ul>
+
+        <a href="#contact" class="btn btn-primary">
+          Enquire
+        </a>
+
+      </div>
+
+
+      <!-- CUSTOM -->
+
+      <div class="price-card">
+
+        <h3>
+          Custom
+        </h3>
+
+        <div class="price">
+          RM250+
+        </div>
+
+        <ul>
+
+          <li>
+            Custom website
+          </li>
+
+          <li>
+            Multiple sections/pages
+          </li>
+
+          <li>
+            Custom design
+          </li>
+
+          <li>
+            Content setup
+          </li>
+
+        </ul>
+
+        <a href="#contact" class="btn">
+          Enquire
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- CONTACT -->
+
+<section id="contact">
+
+  <div class="container">
+
+    <div class="contact-box">
+
+      <h2>
+        Have a project?
+      </h2>
+
+      <p>
+        Tell me what your business needs and
+        I'll help turn it into a clean digital presence.
+      </p>
+
+      <a
+        class="btn btn-primary"
+        href="https://wa.me/60169226469?text=Hi%20Ram%2C%20I%27m%20interested%20in%20R%20Studio%20services."
+      >
+        WhatsApp Ram
+      </a>
+
+      <div class="phone">
+        Ram • 016-922 6469
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+  <div class="container">
+
+    © 2026 R Studio. Built by Ram.
+
+  </div>
+
+</footer>
+
+</body>
+</html>
+
+
+
